@@ -21,5 +21,4 @@ urlpatterns = [
     path('pybo/', include('pybo.urls')),
     path('',include('common.urls')),
     path('index/',views.index,name='index'),
-    path('lecture/', include('lecture.urls')),
 ]

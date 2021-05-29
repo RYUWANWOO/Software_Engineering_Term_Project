@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>이름</th>
+            <th>직업</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if acc_list %}
+        {% for acc in acc_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ acc.username }}</td>
+            <td>{{ acc.job }}</td>
+            <td>
+                <a href="#" class="delete btn btn-sm btn-outline-secondary"
+                data-uri="{% url 'common:acc_delete' acc.id  %}">삭제</a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">계정이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(".delete").on('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = $(this).data('uri');
+        }
+    });
+});
+</script>
+{% endblock %}
