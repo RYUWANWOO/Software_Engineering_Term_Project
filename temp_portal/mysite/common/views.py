@@ -1,7 +1,14 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import UserForm
-import bcrypt
+from .models import User
+
+
+def acc_delete(request, acc_id):
+    acc = User.objects.get(id=acc_id)
+    acc.delete()
+    return redirect('common:acc_index')
+
 def signup(request):
     """
     계정생성
@@ -21,3 +28,10 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form': form})
+
+
+def acc_index(request):
+    acc_list = User.objects.order_by('id')
+    context = {'acc_list': acc_list}
+
+    return render(request, 'common/acc_list.html', context)
