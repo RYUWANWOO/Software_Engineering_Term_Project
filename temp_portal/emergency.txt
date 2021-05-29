@@ -1,0 +1,38 @@
+<models.py>
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+# Create your models here.
+class User(AbstractUser):
+    job=models.CharField(max_length=30)
+
+<admin.py>
+from django.contrib import admin
+from . import models
+# Register your models here.
+
+@admin.register(models.User)
+class CustomUserAdmin(admin.ModelAdmin) :
+    list_display=('username','job', 'is_staff')
+    list_filter=('job',)
+
+<settings.py>
+AUTH_USER_MODEL = "accmanage.User"
+
+================================================================
+urlpatterns = [
+    path('', auth_views.LoginView.as_view(template_name='common/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('signup/', views.signup, name='signup'),
+]
+
+LOGIN_REDIRECT_URL = 'index/'
+
+<urls.py> - config
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('pybo/', include('pybo.urls')),
+    path('',include('common.urls')),
+    path('index/',views.index,name='index'),
+]
+
+
