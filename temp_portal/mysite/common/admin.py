@@ -4,5 +4,5 @@ from . import models
 
 @admin.register(models.User)
 class CustomUserAdmin(admin.ModelAdmin) :
-    list_display=('username','first_name','last_name','job', 'is_staff')
-    list_filter=('job',)
+    list_display=('username','first_name','last_name',"job" ,'is_staff')
+    list_filter=("job",)
