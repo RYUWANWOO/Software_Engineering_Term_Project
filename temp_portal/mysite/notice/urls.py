@@ -6,6 +6,6 @@ app_name = 'notice'
 
 urlpatterns = [
     path('', views.notice, name='notice'),
-    path('<int:question_id>/', views.detail, name='detail'),
-    path('question/create/',views.question_create, name='question_create'),
+    path('<int:notice_id>/', views.detail, name='detail'),
+    path('notice/create/', views.notice_create, name='notice_create'),
 ]

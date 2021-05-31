@@ -1,10 +1,10 @@
 from django import forms
-from .models import Question
+from .models import Notice
 
 
-class QuestionForm(forms.ModelForm):
+class NoticeForm(forms.ModelForm):
     class Meta:
-        model = Question
+        model = Notice
         fields = ['subject','content']
         labels = {
             'subject': '제목',
