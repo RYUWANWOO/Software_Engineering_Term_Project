@@ -1,34 +1,34 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404 ,redirect
 # Create your views here.
-from .models import Question
+from .models import Notice
 from django.utils import timezone
-from .forms import QuestionForm
+from .forms import NoticeForm
 
 
 def notice(request):
 
-    question_list = Question.objects.order_by('-create_date')
-    context = {'question_list': question_list}
+    notice_list = Notice.objects.order_by('-create_date')
+    context = {'notice_list': notice_list}
 
     return render(request, 'notice/notice_list.html', context)
 
 
-def detail(request,question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    context = {'question': question}
+def detail(request,notice_id):
+    notice = get_object_or_404(Notice, pk=notice_id)
+    context = {'notice': notice}
     return render(request,'notice/notice_detail.html',context)
 
 
-def question_create(request):
+def notice_create(request):
     if request.method == 'POST':
-        form = QuestionForm(request.POST)
+        form = NoticeForm(request.POST)
         if form.is_valid():
-            question = form.save(commit=False)
-            question.create_date = timezone.now()
-            question.save()
-            return redirect('notice:index')
+            notice = form.save(commit=False)
+            notice.create_date = timezone.now()
+            notice.save()
+            return redirect('notice:notice')
     else:
-        form = QuestionForm()
+        form = NoticeForm()
     context = {'form': form}
     return render(request, 'notice/notice_form.html', context)
