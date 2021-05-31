@@ -22,9 +22,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('index/', views.index, name='index'),
     path('pybo/', include('pybo.urls')),
     path('',include('common.urls')),
-    path('index/',views.index,name='index'),
-    path('class/',include('class.urls')),
+    path('notice/',include('notice.urls')),
     path('lecture/', include('lecture.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -34,8 +34,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'pybo.apps.PyboConfig',
     'common.apps.CommonConfig',
-    'class.apps.ClassConfig',
     'lecture.apps.LectureConfig',
+    'notice.apps.NoticeConfig',
 #----------------------------------------#
     'django.contrib.admin',
     'django.contrib.auth',
@@ -135,7 +135,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_REDIRECT_URL =  'index/'
+LOGIN_REDIRECT_URL = 'index/'
 
 
 LOGOUT_REDIRECT_URL = '/'
